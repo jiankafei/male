@@ -107,7 +107,7 @@
   navBarMode, // 来源于 config
   ```
 
-## async await 支持
+## async function 支持
 
   在需要使用 async 函数的文件里顶部添加如下代码：
 
@@ -122,13 +122,11 @@
   1. authLogin: 授权登录，只有授权后才会调用登录流程，并获取用户微信信息
   2. silentLogin: 静默登录，不需要用户授权，执行静默登录
   3. bothLogin: 兼容登录，授权情况下，调用authLogin，没有授权，调用silentLogin
-  4. login: 一般只需调用该方法，传入要调用的方法名 (both_login | auth_login | silent_login) 该方法在内部做了是否登录的判断，并默认调用 both_login，除非需要显式调用登录方法
+  4. login: 该方法在内部调用，通过 config 来配置登录方式 (both_login | auth_login | silent_login) 该方法在内部做了是否登录的判断，并默认调用 both_login
 
-  注：在做授权登录时，如果需要自行调用上述任何一个登录函数，则需要按照下面的方式操作：
+  注：在做授权登录时，如果需要自行调用上述三个登录函数，则需要按照下面的方式操作：
 
   ```js
-    App.ready = app.login(name);
-    // or
     App.ready = app.authLogin();
     // or
     App.ready = app.silentLogin();
