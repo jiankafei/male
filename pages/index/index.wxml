@@ -1,0 +1,2 @@
+<view bind:tap="method_0">主页</view>
+<navigator url="/pages/me/me">我的</navigator>

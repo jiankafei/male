@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/me/me"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#232728",
+    "navigationBarBackgroundColor": "#232728",
+    "navigationBarTitleText": "框架",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "default"
+  },
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/index",
+    "user-info": "/components/user-info/index"
+  },
+  "permission": {}
+}

@@ -1,0 +1,9 @@
+<view class="__userInfo">
+  <slot></slot>
+  <button
+    plain
+    open-type="getUserInfo"
+    catch:getuserinfo="getUserInfo"
+    wx:if="{{visibility && showUserInfoBtn}}"
+    class="__userInfo-get"/>
+</view>

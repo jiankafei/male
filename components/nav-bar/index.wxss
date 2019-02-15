@@ -1,0 +1,59 @@
+/* @import "/assets/iconfont.wxss"; */
+Page {
+  /* 菜单高度 */
+  --MH: 30px;
+}
+
+.navbar-fill {
+  background: transparent;
+}
+
+.navbar-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-title {
+  position: fixed;
+  left: 110px;
+  right: 110px;
+  line-height: var(--MH);
+  text-align: center;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 1001;
+}
+
+.navbar-btn {
+  position: fixed;
+  display: flex;
+  z-index: 1002;
+}
+
+.navbar-item {
+  width: var(--MH);
+  height: var(--MH);
+  display: flex;
+}
+
+.navbar-item + .navbar-item {
+  margin-left: 5px;
+}
+
+.navbar-item .navbar-icon {
+  width: 17px;
+  height: 17px;
+  margin: auto;
+}
+
+.navbar-home {
+  width: 47px;
+  border-radius: 16px;
+  /* background-color: rgba(256, 256, 256, .1); */
+  background-color: rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,40 @@
+<cover-view
+  class="navbar-fill"
+  wx:if="{{fill}}"
+  style="height: {{height}}px;">
+</cover-view>
+
+<cover-view
+  class="navbar-mask"
+  wx:if="{{background !== 'transparent'}}"
+  style="height: {{height}}px; background: {{background}};">
+</cover-view>
+
+<cover-view
+  class="navbar-title"
+  wx:if="{{title}}"
+  style="top: {{top}}px; color: {{color}};">{{title}}
+</cover-view>
+
+<cover-view
+  class="navbar-btn"
+  style="top: {{top}}px; left: {{left / 2}}px;">
+  <cover-view
+    class="navbar-item navbar-back"
+    wx:if="{{backNav}}"
+    bind:tap="navBack">
+    <cover-image
+      class="navbar-icon navbar-icon-back"
+      src="./image/back_{{iconStyle}}.png">
+    </cover-image>
+  </cover-view>
+  <cover-view
+    class="navbar-item navbar-home"
+    wx:if="{{homeNav}}"
+    bind:tap="navHome">
+    <cover-image
+      class="navbar-icon navbar-icon-home"
+      src="./image/home_{{iconStyle}}.png">
+    </cover-image>
+  </cover-view>
+</cover-view>
