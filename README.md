@@ -83,7 +83,7 @@
 
 ## config
 
-  配置
+  ```js
   APP_STORE_KEY: '',
   BASE_TOKEN: '',
   LOGIN_URL: '',
@@ -91,6 +91,7 @@
   INDEX_ROUTE: '', // 主页路径，没有前置/，默认 pages/index/index
   CHECK_SESSION_TYPE: '', // store | api 默认 store
   NAV_BAR_MODE: '', // dark | light 自定义组件nav-bar 默认 dark
+  ```
 
 ## store
 
@@ -98,11 +99,13 @@
 
   默认有：
 
-  1. systemInfo,
-  2. navBarInfo,
-  3. userInfo, // 默认为空对象
-  4. indexRoute, // 来源于 config
-  5. navBarMode, // 来源于 config
+  ```js
+  systemInfo,
+  navBarInfo,
+  userInfo, // 默认为空对象
+  indexRoute, // 来源于 config
+  navBarMode, // 来源于 config
+  ```
 
 ## async await 支持
 
@@ -140,6 +143,7 @@
 
   各种工具函数，已挂载到 app 实例上
 
+  ```js
   getStorage,
   setStorage,
   removeStorage,
@@ -166,6 +170,7 @@
   checkAuth, // promisify 权限鉴定
   loginToWx, // promisify 登陆到 微信服务器
   loginToSite, // promisify 登陆到自家服务器
+  ```
 
 ## 注意
 
