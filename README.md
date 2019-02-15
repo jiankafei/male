@@ -79,7 +79,7 @@
 
 ## App.Fetch - Method
 
-  小程序请求接口的封装，返回一个请求实例
+  小程序请求接口的封装，返回一个请求实例，padding...
 
 ## config
 
@@ -122,7 +122,7 @@
   1. authLogin: 授权登录，只有授权后才会调用登录流程，并获取用户微信信息
   2. silentLogin: 静默登录，不需要用户授权，执行静默登录
   3. bothLogin: 兼容登录，授权情况下，调用authLogin，没有授权，调用silentLogin
-  4. login: 该方法在内部调用，通过 config 来配置登录方式 (both_login | auth_login | silent_login) 该方法在内部做了是否登录的判断，并默认调用 both_login
+  4. login: 该方法在内部调用，做了是否登录的判断。通过 config 来配置登录方式 (both_login | auth_login | silent_login)，并默认调用 both_login
 
   注：在做授权登录时，如果需要自行调用上述三个登录函数，则需要按照下面的方式操作：
 
