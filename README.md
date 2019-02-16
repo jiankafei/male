@@ -81,6 +81,15 @@
 
   小程序请求接口的封装，返回一个请求实例，padding...
 
+## Network
+
+  以下方法都进行了 promisify 并且在 promise 实例上挂载了 task 对象，已挂载到 app 实例
+
+  1. fetch, // 请求
+  2. download, // 下载
+  3. upload, // 上传
+  4. ws, // 双工通讯
+
 ## config
 
   ```js
@@ -107,7 +116,12 @@
   navBarMode, // 来源于 config
   ```
 
-## async function 支持
+## runtime
+
+  添加了以下内容的支持
+
+    async function
+    Promise.prototype.finally
 
   在需要使用 async 函数的文件里顶部添加如下代码：
 
