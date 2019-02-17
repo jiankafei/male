@@ -77,18 +77,25 @@
 
   替代 Component 函数，组件需使用 lifetimes 字段来管理生命周期，因为在外部写的生命周期函数不会起作用
 
-## App.Fetch - Method
-
-  小程序请求接口的封装，返回一个请求实例，padding...
-
 ## Network
 
-  以下方法都进行了 promisify 并且在 promise 实例上挂载了 task 对象，已挂载到 app 实例
+  以下方法都进行了 promisify 并且在 promise 实例上挂载了 task 对象
 
-  1. fetch, // 请求
-  2. download, // 下载
-  3. upload, // 上传
-  4. ws, // 双工通讯
+### App.Fetch - Class
+
+  小程序请求接口的封装
+
+### App.DL - Class
+
+  小程序下载接口的封装
+
+### App.UL - Class
+
+  小程序上传接口的封装
+
+### App.WS - Class
+
+  小程序双工通讯接口的封装
 
 ## config
 
