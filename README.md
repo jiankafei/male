@@ -96,7 +96,7 @@
     .add(callback)
     .remove(callback)
   const ins = FC.create(defaults);
-  ins.defaults = {};
+  ins.defaults = {}; // 会覆盖 create 方法里的 defaults
   ins.reqWall
     .add(callback)
     .remove(callback)
