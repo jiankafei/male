@@ -111,15 +111,15 @@
   };
   ```
 
-### App.DL - Object
+### App.DL - Method
 
   小程序下载接口的封装
 
-### App.UL - Object
+### App.UL - Method
 
   小程序上传接口的封装
 
-### App.WS - Object
+### App.WS - Method
 
   小程序双工通讯接口的封装
 
@@ -221,7 +221,8 @@
 
   以下两个组件均已添加到全局组件
 
-  1. nav-bar 自定义导航组件
+  nav-bar: 自定义导航组件
+
     @props title // 非必填，标题
     @props color // 非必填，标题颜色
     @props background // 非必填，导航栏背景
@@ -229,7 +230,9 @@
     @props back // 非必填，是否显示 back 按钮
     @props home // 非必填，是否显示 home 按钮
     @props mode // 非必填，按钮样式，dark | light
-  2. user-info 授权 getUserInfo 组件
+
+  user-info: 授权 getUserInfo 组件
+
     @props visibility // 非必填，外部控制是否显示
     @event userinfo // 点击授权按钮事件
     @event success // 授权成功事件
