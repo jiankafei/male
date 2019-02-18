@@ -22,13 +22,13 @@
   4. 注入登录到服务器 loginToSite 方法，非必填：
     返回一个 promise 实例；该方法会接收到一个参数：
 
-    ```js
-    data = {
-      code,
-      encrypted_data, // 授权后才会有
-      iv, // 授权后才会有
-    }
-    ```
+  ```js
+  data = {
+    code,
+    encrypted_data, // 授权后才会有
+    iv, // 授权后才会有
+  }
+  ```
 
 ## Main
 
@@ -36,19 +36,19 @@
 
 ### 添加的功能函数
 
-  1. catchMethods
+  1. catchMethods：
     page实例或component实例中任何函数的执行都会触发该函数的执行，并传递参数到该函数，不包含生命周期函数；
     该函数可以实现代码无侵入埋点等操作
 
-    ```js
-    options = {
-      route, // page 里为 this.route comp 里为 this.is
-      name, // 函数名
-      event, // 事件对象
-      result, // 函数执行的返回值
-      scope, // page 或者 component 实例
-    }
-    ```
+  ```js
+  options = {
+    route, // page 里为 this.route comp 里为 this.is
+    name, // 函数名
+    event, // 事件对象
+    result, // 函数执行的返回值
+    scope, // page 或者 component 实例
+  }
+  ```
 
 ## App.Page - Method
 
@@ -142,7 +142,7 @@
 
 ## store
 
-  app.store // 相当于 app.globalData
+  app.store 相当于 app.globalData
 
   默认有：
 
