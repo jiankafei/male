@@ -83,7 +83,33 @@
 
 ### App.FC - Object
 
-  小程序请求接口的封装，用法类似 axios 提供拦截器和默认设置等操作
+  小程序请求接口的封装，用法类似 axios ；提供拦截器和默认设置等操作
+
+  ```js
+  const FC = App.FC;
+  FC.defaults = {};
+  FC.reqWall
+    .use
+    .eject
+  FC.resWall
+    .use
+    .eject
+  const ins = FC.create(defaults);
+  ins.defaults
+  ins.reqWall
+  ins.resWall
+
+  // 选项
+  options = {
+    baseURL: '',
+    data: Object.create(null),
+    header: Object.create(null),
+    method: 'GET',
+    dataType: 'json',
+    responseType: 'text',
+    validateStatus: status => status >= 200 && status < 300 || status === 304,
+  };
+  ```
 
 ### App.DL - Object
 
