@@ -2,12 +2,12 @@ import './runtime';
 import Page from './page';
 import Comp from './comp';
 import FC from './fetch';
-import Methods from './methods';
 import {
   DL,
   UL,
   WS,
 } from './network';
+import Methods from './methods';
 import {
   authLogin,
   silentLogin,
