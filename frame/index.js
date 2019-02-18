@@ -1,8 +1,13 @@
 import './runtime';
 import Page from './page';
 import Comp from './comp';
+import FC from './fetch';
 import Methods from './methods';
-import Network from './network';
+import {
+  DL,
+  UL,
+  WS,
+} from './network';
 import {
   authLogin,
   silentLogin,
@@ -12,10 +17,16 @@ import {
 import InnerConfig from './config';
 import InnerStore from './store';
 
+App.Page = Page;
+App.Comp = Comp;
+App.FC = FC;
+App.DL = DL;
+App.UL = UL;
+App.WS = WS;
+
 const Main = (options) => {
   App({
     ...Methods,
-    ...Network,
     authLogin,
     silentLogin,
     bothLogin,
@@ -36,8 +47,6 @@ export default ({
   InnerStore.navBarMode = InnerConfig.NAV_BAR_MODE;
   App.init = init;
   App.loginToSite = loginToSite;
-  App.Page = Page;
-  App.Comp = Comp;
   App.ready = login(config.LOGIN_TYPE);
   App.ready.catch(console.warn);
   return Main;

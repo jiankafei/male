@@ -1,19 +1,10 @@
-const nul = () => Object.create(null);
-const mergeOptions = (...args) => {
-  const options = nul();
-  for (const item of args) {
-    const { header, ...other } = item;
-    Object.assign(options, other);
-    Object.assign(options.header, header);
-  }
-  return options;
-};
-
-const FC = nul();
-FC.defaults = nul();
+import {
+  nul,
+  mergeOptions,
+} from './util';
 
 // 默认配置
-const InnerDefaults = {
+const InnerOptions = {
   baseURL: '',
   data: nul(),
   header: nul(),
@@ -54,26 +45,58 @@ const fetch = ({
   return p;
 };
 
-// 核心类
-const wm = new WeakMap();
-class Core {
-  constructor(InstanceDefaults = nul()) {
-    wm.set(this, mergeOptions(InnerDefaults, FC.defaults, InstanceDefaults));
+// 拦截器
+const wm_queue = new WeakMap();
+class Wall {
+  constructor() {
+    wm_queue.set(this, new Set());
   }
-  fetch(options) {
-    if (!options.url) throw new Error('url is required');
-    options = mergeOptions(wm.get(this), options);
-    options.method = options.method.toUpperCase();
-    return fetch(options);
+  // 添加拦截器
+  use(callback) {
+    wm_queue.get(this).add(callback);
+  }
+  // 弹出拦截器
+  eject(callback) {
+    wm_queue.get(this).delete(callback);
   }
 };
 
-// FC 添加方法
-const defaultInstance = new Core();
-FC.fetch = defaultInstance.fetch.bind(defaultInstance);
-FC.create = defaults => new Core(defaults);
+// 主程序
+const FC = nul();
+FC.defaults = nul();
+FC.reqWall = new Wall();
+FC.resWall = new Wall();
 
-// 添加其他方法
+// 核心类
+const wm_ins_options = new WeakMap();
+class Core {
+  constructor(options = nul()) {
+    wm_ins_options.set(this, options);
+    this.reqWall = new Wall();
+    this.resWall = new Wall();
+  }
+  async fetch(options) {
+    try {
+      if (!options.url) throw new Error('url is required');
+      options = mergeOptions(InnerOptions, FC.defaults, wm_ins_options.get(this), options);
+      options.method = options.method.toUpperCase();
+      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fetch, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
+      let res = options;
+      // 执行链条数组
+      while (chain.length) {
+        res = await chain.shift()(res);
+      }
+      return res;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+};
+
+const InnerInstance = new Core();
+FC.fetch = InnerInstance.fetch.bind(InnerInstance);
+FC.create = options => new Core(options);
+
 for (const method of ['post', 'put', 'patch', 'delete', 'get', 'head', 'options']) {
   for (const obj of [Core.prototype, FC]) {
     obj[method] = function(url, data, options) {

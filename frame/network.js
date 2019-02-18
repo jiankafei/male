@@ -1,32 +1,3 @@
-// 请求
-const fetch = ({
-  url,
-  data,
-  method = 'GET',
-  dataType = 'json',
-  responseType = 'text',
-  header,
-}) => {
-  let task = null;
-  const p = new Promise((resolve, reject) => {
-    task = wx.request({
-      url,
-      data,
-      method,
-      dataType,
-      responseType,
-      header,
-      success: res => {
-        if (res.statusCode >= 200 && res.statusCode < 300 || res.statusCode === 304) resolve(res);
-        else reject(res);
-      },
-      fail: reject,
-    });
-  });
-  p.task = task;
-  return p;
-};
-
 // 下载
 const download = ({
   url,
@@ -84,7 +55,7 @@ const upload = ({
 };
 
 // 双工通讯
-const ws = ({
+const socket = ({
   url,
   header,
   protocols,
@@ -110,8 +81,7 @@ const ws = ({
 };
 
 export default {
-  fetch,
-  download,
-  upload,
-  ws,
+  DL: download,
+  UL: upload,
+  WS: socket,
 };

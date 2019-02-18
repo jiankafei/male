@@ -81,19 +81,19 @@
 
   以下方法都进行了 promisify 并且在 promise 实例上挂载了 task 对象
 
-### App.Fetch - Class
+### App.FC - Object
 
-  小程序请求接口的封装
+  小程序请求接口的封装，用法类似 axios 提供拦截器和默认设置等操作
 
-### App.DL - Class
+### App.DL - Object
 
   小程序下载接口的封装
 
-### App.UL - Class
+### App.UL - Object
 
   小程序上传接口的封装
 
-### App.WS - Class
+### App.WS - Object
 
   小程序双工通讯接口的封装
 
