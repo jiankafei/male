@@ -3,6 +3,8 @@ import {
   mergeOptions,
 } from './util';
 
+const regeneratorRuntime = App.regeneratorRuntime;
+
 // 默认配置
 const InnerOptions = {
   baseURL: '',
