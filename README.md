@@ -217,6 +217,24 @@
   loginToSite, // promisify 登陆到自家服务器
   ```
 
+## 内部组件
+
+  以下两个组件均已添加到全局组件
+
+  1. nav-bar 自定义导航组件
+    @props title // 非必填，标题
+    @props color // 非必填，标题颜色
+    @props background // 非必填，导航栏背景
+    @props fill // 非必填，是否占据空间
+    @props back // 非必填，是否显示 back 按钮
+    @props home // 非必填，是否显示 home 按钮
+    @props mode // 非必填，按钮样式，dark | light
+  2. user-info 授权 getUserInfo 组件
+    @props visibility // 非必填，外部控制是否显示
+    @event userinfo // 点击授权按钮事件
+    @event success // 授权成功事件
+    @event fail // 授权失败事件
+
 ## 注意
 
   1. 登录流程和初始信息加载流程在 App 启动时，只会执行一次，因此除了初始显式的页面，其他页面的 onCreated 等有类似启动时机的周期函数将会很快被执行，因此无需担心新的周期函数会增加页面打开时间；
