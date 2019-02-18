@@ -131,13 +131,13 @@
 ## config
 
   ```js
-  APP_STORE_KEY: '',
-  BASE_TOKEN: '',
-  LOGIN_URL: '',
-  LOGIN_TYPE: '', // both_login | auth_login | silent_login 默认 both_login
+  APP_STORE_KEY: '', // 存储app信息的 localStorege key
+  BASE_TOKEN: '', // 基础 token
+  LOGIN_URL: '',  // 登录到站点的url
+  LOGIN_TYPE: '', // 登录类型 both_login | auth_login | silent_login 默认 both_login
   INDEX_ROUTE: '', // 主页路径，没有前置/，默认 pages/index/index
-  CHECK_SESSION_TYPE: '', // store | api 默认 store
-  NAV_BAR_MODE: '', // dark | light 自定义组件nav-bar 默认 dark
+  CHECK_SESSION_TYPE: '', // 检测session的方式 api | store 默认 api
+  NAV_BAR_MODE: '', // 自定义组件nav-bar模式 dark | light  默认 dark
   ```
 
 ## store
