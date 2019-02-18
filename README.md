@@ -9,8 +9,18 @@
 
 ## Frame
 
-  import Frame from './frame/index';
   用于初始化注入，并返回 Main 函数
+
+  ```js
+  import Frame from './frame/index';
+  const Main = Frame({
+    config,
+    store,
+    init: () => {},
+    loginToSite: () => {},
+  });
+  Main({});
+  ```
 
   1. 注入 config，详见 config
   2. 注入 store，详见 store
@@ -54,6 +64,10 @@
 
   对 Page 函数的封装
 
+  ```js
+  App.Page({});
+  ```
+
 ### 删除的生命周期函数
 
   1. onLoad
@@ -62,11 +76,11 @@
 ### 添加的生命周期函数：
 
   1. onCreated:
-    替代 onLoad，小程序登陆流程和初始信息加载流程完毕后触发
+    替代 onLoad，小程序登陆流程和初始信息加载流程完毕后触发，在内部使用 App.ready
   2. onAppear:
     替代 onShow，如果想有和onCreated一样的触发时机，则可以使用 App.ready 实例
   3. onForward:
-    页面进入并显示时触发，但触发时机和 onCreated 一样
+    页面进入并显示时触发，小程序登陆流程和初始信息加载流程完毕后触发，在内部使用 App.ready
   4. onBackward:
     返回到当前页面并显示时触发
   5. onReappear:
@@ -77,6 +91,10 @@
 ## App.Comp - Method
 
   替代 Component 函数，组件需使用 lifetimes 字段来管理生命周期，写在外部的生命周期函数将不起作用
+
+  ```js
+  App.Comp({});
+  ```
 
 ## Network
 
