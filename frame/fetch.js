@@ -54,12 +54,14 @@ class Wall {
     wm_queue.set(this, new Set());
   }
   // 添加拦截器
-  use(callback) {
+  add(callback) {
     wm_queue.get(this).add(callback);
+    return this;
   }
   // 弹出拦截器
-  eject(callback) {
+  remove(callback) {
     wm_queue.get(this).delete(callback);
+    return this;
   }
 };
 

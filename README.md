@@ -88,16 +88,21 @@
   ```js
   const FC = App.FC;
   FC.defaults = {};
+  // 拦截器支持链式调用
   FC.reqWall
-    .use
-    .eject
+    .add(callback)
+    .remove(callback)
   FC.resWall
-    .use
-    .eject
+    .add(callback)
+    .remove(callback)
   const ins = FC.create(defaults);
-  ins.defaults
+  ins.defaults = {};
   ins.reqWall
+    .add(callback)
+    .remove(callback)
   ins.resWall
+    .add(callback)
+    .remove(callback)
 
   // 选项
   options = {
