@@ -147,8 +147,8 @@
   默认有：
 
   ```js
-  systemInfo,
-  navBarInfo,
+  systemInfo, // wx.getSystemInfoSync 的结果
+  navBarInfo, // 导航栏相关布局信息
   userInfo, // 默认为空对象
   indexRoute, // 来源于 config
   navBarMode, // 来源于 config
@@ -194,6 +194,7 @@
   各种工具函数，已挂载到 app 实例上
 
   ```js
+  // 对 wx.xxxSync 同步api的封装
   getStorage,
   setStorage,
   removeStorage,
