@@ -71,11 +71,12 @@
     返回到当前页面并显示时触发
   5. onReappear:
     切换到后台又恢复显示时触发
+
   注：其他配置和原框架一致
 
 ## App.Comp - Method
 
-  替代 Component 函数，组件需使用 lifetimes 字段来管理生命周期，因为在外部写的生命周期函数不会起作用
+  替代 Component 函数，组件需使用 lifetimes 字段来管理生命周期，写在外部的生命周期函数将不起作用
 
 ## Network
 
@@ -83,7 +84,7 @@
 
 ### App.FC - Object
 
-  小程序请求接口的封装，用法类似 axios ；提供拦截器和默认设置等操作
+  小程序请求接口的封装，用法类似 axios，提供拦截器和默认设置等操作
 
   ```js
   const FC = App.FC;
