@@ -5,7 +5,7 @@
 ## App.ready - Promise
 
   1. 一个 Promise 实例，成功表示登录流程和初始信息加载流程完成；
-  2. 一般不需要显式调用，新增的onCreated和onForward生命周期函数在内容使用该 Promise 实例
+  2. 一般不需要显式调用，新增的onCreated和onForward生命周期函数在内部使用该 Promise 实例
 
 ## Frame
 
