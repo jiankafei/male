@@ -46,7 +46,7 @@
 
 ### 添加的功能函数
 
-  1. catchMethods：
+  1. methodCaptured:
     page实例或component实例中任何函数的执行都会触发该函数的执行，并传递参数到该函数，不包含生命周期函数；
     该函数可以实现代码无侵入埋点等操作
 
@@ -108,20 +108,21 @@
   const FC = App.FC;
   FC.defaults = {};
   // 拦截器支持链式调用
+  // middleware: async function | common function
   FC.reqWall
-    .add(callback)
-    .remove(callback)
+    .add(middleware)
+    .remove(middleware)
   FC.resWall
-    .add(callback)
-    .remove(callback)
+    .add(middleware)
+    .remove(middleware)
   const ins = FC.create(defaults);
   ins.defaults = {}; // 会覆盖 create 方法里的 defaults
   ins.reqWall
-    .add(callback)
-    .remove(callback)
+    .add(middleware)
+    .remove(middleware)
   ins.resWall
-    .add(callback)
-    .remove(callback)
+    .add(middleware)
+    .remove(middleware)
 
   // 选项
   options = {

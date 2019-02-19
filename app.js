@@ -12,7 +12,7 @@ const Main = Frame({
 });
 
 Main({
-  catchMethods(options) {
+  methodCaptured(options) {
     console.log(options);
   },
 });
