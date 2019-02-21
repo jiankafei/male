@@ -36,33 +36,33 @@ export default ({
   Page({
     onLoad(query) {
       App.ready
-        .then(res => {
+        .then(() => {
           console.log('Created');
-          typeof onCreated === 'function' && onCreated(query);
+          typeof onCreated === 'function' && onCreated.call(this, query);
         })
         .catch(console.warn);
     },
     onShow() {
       const currentStackLength = getCurrentPages().length;
       // all
-      typeof onAppear === 'function' && onAppear();
+      typeof onAppear === 'function' && onAppear.call(this);
       // type
       if (currentStackLength > stackLength) {
         // 进入
         App.ready
           .then(res => {
             console.log('ForwardShow');
-            typeof onForward === 'function' && onForward();
+            typeof onForward === 'function' && onForward.call(this);
           })
           .catch(console.warn);
       } else if (currentStackLength < stackLength) {
         // 返回
         console.log('BackwardShow');
-        typeof onBackward === 'function' && onBackward();
+        typeof onBackward === 'function' && onBackward.call(this);
       } else if (currentStackLength === stackLength) {
         // 前后台切换
         console.log('ReappearShow');
-        typeof onReappear === 'function' && onReappear();
+        typeof onReappear === 'function' && onReappear.call(this);
       }
       stackLength = currentStackLength;
     },

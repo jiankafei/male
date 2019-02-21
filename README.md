@@ -2,6 +2,12 @@
 
   ！不允许修改 frame 文件夹里的文件
 
+## 解决的问题
+
+  1. app onLaunch 等周期函数以及登录请求和 page 的周期函数的执行是异步的，导致两者不能衔接的问题
+  2. page 周期函数中 返回页面和进入页面以及挂起后重回页面 onshow 周期函数无法区分的问题
+  3. 第三方埋点操作侵入性过强的问题
+
 ## App.ready - Promise
 
   1. 一个 Promise 实例，成功表示登录流程和初始信息加载流程完成；
@@ -108,7 +114,10 @@
   const FC = App.FC;
   FC.defaults = {};
   // 拦截器支持链式调用
-  // middleware: async function | common function
+  // middleware: async function | common function | common function with promise
+  // reqWall callback 参数为 options 请求配置，并且需要返回 options
+  // resWall callback 参数为 res 请求结果，并且需要返回 res
+  // callback 返回为 promise 时，promise 的 resolve 必须相应的传递 options 或 res
   FC.reqWall
     .add(middleware)
     .remove(middleware)

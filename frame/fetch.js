@@ -2,8 +2,12 @@ import {
   nul,
   mergeOptions,
 } from './util';
+import config from './config';
+import Methods from './methods';
 
 const regeneratorRuntime = App.regeneratorRuntime;
+
+let FORBIDDEN = false; // 登陆态是否过期，是否 403
 
 // 默认配置
 const InnerOptions = {
@@ -40,7 +44,26 @@ const fetch = ({
         if (validateStatus(res.statusCode)) resolve(res);
         else reject(res);
       },
-      fail: reject,
+      fail: err => {
+        if (err.statusCode === 403 || err.statusCode === 401) {
+          FORBIDDEN = true;
+          wx.showLoading({
+            title: '正在重新登录',
+            mask: true,
+          });
+          Methods.removeSession();
+          App.ready = login(config.LOGIN_TYPE);
+          App.ready
+            .then(() => {
+              FORBIDDEN = false;
+              wx.redirectTo({
+                url: `/${getApp().getPage().route}`,
+              });
+            })
+            .catch(console.warn);
+        }
+        reject(err);
+      },
     });
   });
   p.task = task;
@@ -84,7 +107,14 @@ class Core {
       if (!options.url) throw new Error('url is required');
       options = mergeOptions(InnerOptions, FC.defaults, wm_ins_options.get(this), this.defaults, options);
       options.method = options.method.toUpperCase();
-      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fetch, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
+      const fatchMiddleware = options => {
+        const p = fetch(options);
+        if (FORBIDDEN && options.header.Authorization) {
+          p.task.abort(); // 中断请求
+        }
+        return p;
+      };
+      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fatchMiddleware, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
       let res = options;
       // 执行链条数组
       while (chain.length) {
@@ -97,9 +127,12 @@ class Core {
   }
 };
 
-const InnerInstance = new Core();
-FC.fetch = InnerInstance.fetch.bind(InnerInstance);
-FC.create = options => new Core(options);
+const ins = new Core();
+FC.fetch = ins.fetch.bind(ins);
+FC.create = options => {
+  const ins = new Core(options);
+  return ins;
+};
 
 for (const method of ['post', 'put', 'patch', 'delete', 'get', 'head', 'options']) {
   for (const obj of [Core.prototype, FC]) {

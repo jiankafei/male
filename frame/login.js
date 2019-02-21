@@ -5,7 +5,7 @@ const regeneratorRuntime = App.regeneratorRuntime;
 const authLogin = async function() {
   await Methods.checkAuth('userInfo');
   const code = await Methods.loginToWx();
-  const { encryptedData: encrypted_data, iv } = await Methods.getUserInfo();
+  const { encryptedData: encrypted_data, iv, userInfo } = await Methods.getUserInfo();
   const res = await App.loginToSite({
     code,
     encrypted_data,
