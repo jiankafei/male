@@ -205,7 +205,10 @@
   3. bothLogin: 兼容登录，授权情况下，调用authLogin，没有授权，调用silentLogin
   4. login: 该方法在内部调用，做了是否登录的判断。通过 config 来配置登录方式 (both_login | auth_login | silent_login)，并默认调用 both_login
 
-  注：在做授权登录时，如果需要自行调用上述三个登录函数，则需要按照下面的方式操作：
+### 注意：
+
+  1. 自定义登陆态下，当前页面请求时，session_key 过期，则会重新登录并重新加载页面
+  2. 在做授权登录时，如果需要自行调用上述三个登录函数，则需要按照下面的方式操作：
 
   ```js
     App.ready = app.authLogin();
