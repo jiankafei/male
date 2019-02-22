@@ -10,7 +10,7 @@ export default ({
   for (const [key, val] of Object.entries(methods)) {
     innerMethods[key] = function(event = Object.create(null)) {
       const result =  val.call(this, event);
-      app.methodCaptured({
+      typeof app.methodCaptured === 'function' && app.methodCaptured({
         route: this.is,
         name: key,
         event,

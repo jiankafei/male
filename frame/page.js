@@ -20,7 +20,7 @@ export default ({
     if (typeof val === 'function') {
       innerOptions[key] = function(event = Object.create(null)) {
         const result = val.call(this, event);
-        app.methodCaptured({
+        typeof app.methodCaptured === 'function' && app.methodCaptured({
           route: this.route,
           name: key,
           event,
