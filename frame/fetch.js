@@ -2,7 +2,6 @@ import {
   nul,
   mergeOptions,
 } from './util';
-import config from './config';
 import Methods from './methods';
 
 const regeneratorRuntime = App.regeneratorRuntime;
@@ -54,7 +53,7 @@ const fetch = function({
             mask: true,
           });
           Methods.removeSession();
-          App.ready = login(config.LOGIN_TYPE);
+          App.ready = login(App.process.LOGIN_TYPE);
           App.ready
             .then(() => {
               wx.redirectTo({

@@ -14,7 +14,6 @@ import {
   bothLogin,
   login,
 } from './login';
-import InnerConfig from './config';
 import InnerStore from './store';
 
 App.Page = Page;
@@ -24,27 +23,25 @@ App.DL = DL;
 App.UL = UL;
 App.WS = WS;
 
-const Main = (options) => {
+const Main = (store, ...options) => {
   App({
     ...Methods,
     authLogin,
     silentLogin,
     bothLogin,
     ...options,
-    store: InnerStore,
+    store: Object.assign(InnerStore, store),
   });
 };
 
 export default ({
-  config,
-  store,
+  env,
   init = Promise.resolve,
   loginToSite = Methods.loginToSite,
 }) => {
-  Object.assign(InnerConfig, config);
-  Object.assign(InnerStore, store);
-  InnerStore.indexRoute = InnerConfig.INDEX_ROUTE;
-  InnerStore.navBarMode = InnerConfig.NAV_BAR_MODE;
+  for (const [key, val] of Object.entries(env)) {
+    App.process[key] = val;
+  }
   App.init = init;
   App.loginToSite = loginToSite;
   App.ready = login(config.LOGIN_TYPE);

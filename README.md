@@ -20,22 +20,20 @@
   ```js
   import Frame from './frame/index';
   const Main = Frame({
-    config,
-    store,
+    env,
     init: () => {},
     loginToSite: () => {},
   });
   Main({});
   ```
 
-  1. 注入 config，详见 config
-  2. 注入 store，详见 store
-  3. 注入 init 方法，非必填：
+  1. 注入 env, 详见 env
+  2. 注入 init 方法，非必填：
     App 登录之后需要执行的初始操作；
     一般可以在这里做初始信息加载等操作；
     每次启动app，该方法都会执行，如果没有登录，该方法会在登录后执行，并接收登录接口的结果作为参数；
     返回一个 Promise 实例；
-  4. 注入登录到服务器 loginToSite 方法，非必填：
+  3. 注入登录到服务器 loginToSite 方法，非必填：
     返回一个 promise 实例；该方法会接收到一个参数：
 
   ```js
@@ -157,7 +155,7 @@
 
   小程序双工通讯接口的封装
 
-## config
+## env
 
   ```js
   APP_STORE_KEY: '', // 存储app信息的 localStorege key
@@ -179,8 +177,6 @@
   systemInfo, // wx.getSystemInfoSync 的结果
   navBarInfo, // 导航栏相关布局信息
   userInfo, // 默认为空对象
-  indexRoute, // 来源于 config
-  navBarMode, // 来源于 config
   ```
 
 ## runtime

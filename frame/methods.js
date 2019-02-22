@@ -1,4 +1,3 @@
-import config from './config';
 import store from './store';
 
 // 获取存储
@@ -36,19 +35,19 @@ const clearStorage = function() {
 };
 // 获取app存储key
 const getKey = function(key) {
-  return getStorage(config.APP_STORE_KEY)[key] || '';
+  return getStorage(App.process.APP_STORE_KEY)[key] || '';
 };
 // 设置app存储key
 const setKey = function(key, val) {
-  const oldStore = getStorage(config.APP_STORE_KEY) || Object.create(null);
+  const oldStore = getStorage(App.process.APP_STORE_KEY) || Object.create(null);
   oldStore[key] = val;
-  setStorage(config.APP_STORE_KEY, oldStore);
+  setStorage(App.process.APP_STORE_KEY, oldStore);
 };
 // 删除app存储key
 const removeKey = function(key) {
-  const oldStore = getStorage(config.APP_STORE_KEY) || Object.create(null);
+  const oldStore = getStorage(App.process.APP_STORE_KEY) || Object.create(null);
   delete oldStore[key];
-  setStorage(config.APP_STORE_KEY, oldStore);
+  setStorage(App.process.APP_STORE_KEY, oldStore);
 };
 // 获取session
 const getSession = function() {
@@ -91,7 +90,7 @@ const wxCheckSession = function() {
 };
 // 检查session
 const checkSession = function() {
-  switch (config.CHECK_SESSION_TYPE) {
+  switch (App.process.CHECK_SESSION_TYPE) {
     case 'store':
       return storeCheckSession();
     case 'api':
@@ -193,11 +192,11 @@ const loginToSite = function(data) {
   console.log('%cLoginToSite', 'color: #0C84FF;');
   return new Promise((resolve, reject) => {
     wx.request({
-      url: config.LOGIN_URL,
+      url: App.process.LOGIN_URL,
       method: 'POST',
       data,
       header: {
-        Authorization: config.BASE_TOKEN,
+        Authorization: App.process.BASE_TOKEN,
       },
       success: res => {
         if (res.statusCode === 200 || res.statusCode === 201) {

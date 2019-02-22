@@ -1,10 +1,8 @@
 import Frame from './frame/index';
-import config from './config';
-import store from './store';
+import env from './env';
 
 const Main = Frame({
-  config,
-  store,
+  env,
   init() {
     console.log('%cInit', 'color: #0C84FF;');
     return Promise.resolve();
