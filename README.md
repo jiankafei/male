@@ -116,6 +116,7 @@
   // reqWall callback 参数为 options 请求配置，并且需要返回 options
   // resWall callback 参数为 res 请求结果，并且需要返回 res
   // callback 返回为 promise 时，promise 的 resolve 必须相应的传递 options 或 res
+  // callback 绑定了请求实例
   FC.reqWall
     .add(middleware)
     .remove(middleware)
