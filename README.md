@@ -102,7 +102,7 @@
 
 ## Network
 
-  以下方法都进行了 promisify 并且在 promise 实例上挂载了 task 对象
+  以下方法都进行了 promisify ，除了 App.FC ，其他方法都在 promise 实例上挂载了 task 对象
 
 ### App.FC - Object
 

@@ -104,20 +104,16 @@ class Core {
     this.resWall = new Wall();
   }
   async fetch(options) {
-    try {
-      if (!options.url) throw new Error('url is required');
-      options = mergeOptions(InnerOptions, FC.defaults, wm_ins_options.get(this), this.defaults, options);
-      options.method = options.method.toUpperCase();
-      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fetch, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
-      let res = options;
-      // 执行链条数组
-      while (chain.length) {
-        res = await chain.shift().call(this, res);
-      }
-      return res;
-    } catch (error) {
-      return Promise.reject(error);
+    if (!options.url) throw new Error('url is required');
+    options = mergeOptions(InnerOptions, FC.defaults, wm_ins_options.get(this), this.defaults, options);
+    options.method = options.method.toUpperCase();
+    const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fetch, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
+    let res = options;
+    // 执行链条数组
+    while (chain.length) {
+      res = await chain.shift().call(this, res);
     }
+    return res;
   }
 };
 
