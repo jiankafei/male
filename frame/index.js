@@ -15,13 +15,16 @@ import {
   login,
 } from './login';
 import InnerStore from './store';
+import {
+  dataDesc,
+} from './util';
 
-App.Page = Page;
-App.Comp = Comp;
-App.FC = FC;
-App.DL = DL;
-App.UL = UL;
-App.WS = WS;
+dataDesc(App, 'Page', Page);
+dataDesc(App, 'Comp', Comp);
+dataDesc(App, 'FC', FC);
+dataDesc(App, 'DL', DL);
+dataDesc(App, 'UL', UL);
+dataDesc(App, 'WS', WS);
 
 const Main = (store, ...options) => {
   App({
@@ -42,9 +45,9 @@ export default ({
   for (const [key, val] of Object.entries(env)) {
     App.process[key] = val;
   }
-  App.init = init;
-  App.loginToSite = loginToSite;
-  App.ready = login(config.LOGIN_TYPE);
+  dataDesc(App, 'init', init);
+  dataDesc(App, 'loginToSite', loginToSite);
+  App.ready = login(App.process.LOGIN_TYPE);
   App.ready.catch(console.warn);
   return Main;
 };
