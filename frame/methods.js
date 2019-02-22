@@ -1,4 +1,7 @@
 import store from './store';
+import {
+  nul,
+} from './util';
 
 // 获取存储
 const getStorage = function(key) {
@@ -39,13 +42,13 @@ const getKey = function(key) {
 };
 // 设置app存储key
 const setKey = function(key, val) {
-  const oldStore = getStorage(App.process.APP_STORE_KEY) || Object.create(null);
+  const oldStore = getStorage(App.process.APP_STORE_KEY) || nul();
   oldStore[key] = val;
   setStorage(App.process.APP_STORE_KEY, oldStore);
 };
 // 删除app存储key
 const removeKey = function(key) {
-  const oldStore = getStorage(App.process.APP_STORE_KEY) || Object.create(null);
+  const oldStore = getStorage(App.process.APP_STORE_KEY) || nul();
   delete oldStore[key];
   setStorage(App.process.APP_STORE_KEY, oldStore);
 };
@@ -156,7 +159,7 @@ const getSystemInfo = function() {
     return wx.getSystemInfoSync();
   } catch (err) {
     console.warn(err);
-    return Object.create(null);
+    return nul();
   }
 };
 // 获取当前页面

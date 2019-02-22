@@ -1,3 +1,7 @@
+import {
+  nul,
+} from './util';
+
 let stackLength = 0;
 
 export default ({
@@ -12,13 +16,13 @@ export default ({
   ...options,
 }) => {
   const app = getApp();
-  const innerOptions = Object.create(null);
+  const innerOptions = nul();
   for (const name of ['onLoad', 'onShow']) {
     delete options[name];
   }
   for (const [key, val] of Object.entries(options)) {
     if (typeof val === 'function') {
-      innerOptions[key] = function(event = Object.create(null)) {
+      innerOptions[key] = function(event = nul()) {
         const result = val.call(this, event);
         typeof app.methodCaptured === 'function' && app.methodCaptured({
           route: this.route,
