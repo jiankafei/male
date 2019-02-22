@@ -1,6 +1,6 @@
 const app = getApp();
 
-const { navBarInfo, indexRoute, navBarMode } = app.store;
+const { navBarInfo } = app.store;
 
 App.Comp({
   options: {
@@ -53,13 +53,13 @@ App.Comp({
       const pages = getCurrentPages();
       if (pages.length === 1) {
         this.setData({
-          iconStyle: this.data.mode || navBarMode,
+          iconStyle: this.data.mode || App.process.NAV_BAR_MODE,
           backNav: false,
-          homeNav: pages[pages.length - 1].route === indexRoute ? false : true,
+          homeNav: pages[pages.length - 1].route === App.process.INDEX_ROUTE ? false : true,
         });
       } else {
         this.setData({
-          iconStyle: this.data.mode || navBarMode,
+          iconStyle: this.data.mode || App.process.NAV_BAR_MODE,
           backNav: true && this.data.back,
           homeNav: false || this.data.home,
         });
@@ -72,7 +72,7 @@ App.Comp({
     },
     navHome() {
       wx.reLaunch({
-        url: `/${indexRoute}`,
+        url: `/${App.process.INDEX_ROUTE}`,
       });
     },
   },
