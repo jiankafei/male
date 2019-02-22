@@ -26,7 +26,10 @@ dataDesc(App, 'DL', DL);
 dataDesc(App, 'UL', UL);
 dataDesc(App, 'WS', WS);
 
-const Main = (store, ...options) => {
+const Main = ({
+  store,
+  ...options,
+}) => {
   App({
     ...Methods,
     authLogin,

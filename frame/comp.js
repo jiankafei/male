@@ -3,6 +3,7 @@ export default ({
   ...options,
 }) => {
   const app = getApp();
+  console.log(app);
   const innerMethods = Object.create(null);
   for (const name of ['created', 'created', 'ready', 'moved', 'detached', 'error']) {
     delete options[name];
