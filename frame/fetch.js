@@ -19,8 +19,8 @@ const InnerOptions = {
 
 // 请求方法
 const fetch = function({
-  baseURL,
   url,
+  baseURL,
   data,
   header,
   method,

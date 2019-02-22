@@ -122,6 +122,7 @@
   FC.resWall
     .add(middleware)
     .remove(middleware)
+  FC.fetch(options);
   const ins = FC.create(defaults);
   ins.defaults = {}; // 会覆盖 create 方法里的 defaults
   ins.reqWall
@@ -130,6 +131,7 @@
   ins.resWall
     .add(middleware)
     .remove(middleware)
+  ins.fetch(options);
 
   // 选项
   options = {
