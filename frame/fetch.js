@@ -7,8 +7,6 @@ import Methods from './methods';
 
 const regeneratorRuntime = App.regeneratorRuntime;
 
-let FORBIDDEN = false; // 登陆态是否过期，是否 403
-
 // 默认配置
 const InnerOptions = {
   baseURL: '',
@@ -21,7 +19,7 @@ const InnerOptions = {
 };
 
 // 请求方法
-const fetch = ({
+const fetch = function({
   baseURL,
   url,
   data,
@@ -30,7 +28,7 @@ const fetch = ({
   dataType,
   responseType,
   validateStatus,
-}) => {
+}) {
   let task = null;
   const p = new Promise((resolve, reject) => {
     task = wx.request({
@@ -46,7 +44,11 @@ const fetch = ({
       },
       fail: err => {
         if (err.statusCode === 403 || err.statusCode === 401) {
-          FORBIDDEN = true;
+          for (const task of this.tasks) {
+            if (task.header.Authorization) {
+              task.abort() // 中断请求
+            }
+          }
           wx.showLoading({
             title: '正在重新登录',
             mask: true,
@@ -55,7 +57,6 @@ const fetch = ({
           App.ready = login(config.LOGIN_TYPE);
           App.ready
             .then(() => {
-              FORBIDDEN = false;
               wx.redirectTo({
                 url: `/${getApp().getPage().route}`,
               });
@@ -66,7 +67,8 @@ const fetch = ({
       },
     });
   });
-  p.task = task;
+  task.header  = header;
+  this.tasks.push(task);
   return p;
 };
 
@@ -107,18 +109,11 @@ class Core {
       if (!options.url) throw new Error('url is required');
       options = mergeOptions(InnerOptions, FC.defaults, wm_ins_options.get(this), this.defaults, options);
       options.method = options.method.toUpperCase();
-      const fatchMiddleware = options => {
-        const p = fetch(options);
-        if (FORBIDDEN && options.header.Authorization) {
-          p.task.abort(); // 中断请求
-        }
-        return p;
-      };
-      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fatchMiddleware, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
+      const chain = [...wm_queue.get(FC.reqWall).values(), ...wm_queue.get(this.reqWall).values(), fetch, ...wm_queue.get(FC.resWall).values(), ...wm_queue.get(this.resWall).values()];
       let res = options;
       // 执行链条数组
       while (chain.length) {
-        res = await chain.shift()(res);
+        res = await chain.shift().call(this, res);
       }
       return res;
     } catch (error) {
@@ -128,9 +123,11 @@ class Core {
 };
 
 const ins = new Core();
+ins.tasks = [];
 FC.fetch = ins.fetch.bind(ins);
 FC.create = options => {
   const ins = new Core(options);
+  ins.tasks = [];
   return ins;
 };
 
