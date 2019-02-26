@@ -56,6 +56,7 @@ const fetch = function({
           App.ready = login(App.process.LOGIN_TYPE);
           App.ready
             .then(() => {
+              wx.hideLoading();
               wx.redirectTo({
                 url: `/${getApp().getPage().route}`,
               });
@@ -66,7 +67,7 @@ const fetch = function({
       },
     });
   });
-  task.header  = header;
+  task.header = header;
   this.tasks.push(task);
   return p;
 };
