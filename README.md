@@ -137,6 +137,7 @@
   // 选项
   options = {
     baseURL: '',
+    url: '',
     data: Object.create(null),
     header: Object.create(null),
     method: 'GET',
