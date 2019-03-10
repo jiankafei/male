@@ -8,7 +8,7 @@ export default ({
 }) => {
   const app = getApp();
   const innerMethods = nul();
-  for (const name of ['created', 'created', 'ready', 'moved', 'detached', 'error']) {
+  for (const name of ['created', 'attached', 'ready', 'moved', 'detached', 'error']) {
     delete options[name];
   }
   for (const [key, val] of Object.entries(methods)) {
