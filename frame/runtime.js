@@ -9,9 +9,9 @@ import {
 dataDesc(App, 'regeneratorRuntime', regeneratorRuntime);
 
 // 挂载环境变量
-dataDesc(App, 'process', nul());
+dataDesc(App, 'env', nul());
 for (const [key, val] of Object.entries(env)) {
-  App.process[key] = val;
+  App.env[key] = val;
 }
 
 // Promise.prototype.finally

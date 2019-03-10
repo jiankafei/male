@@ -46,11 +46,11 @@ export default ({
   loginToSite = Methods.loginToSite,
 }) => {
   for (const [key, val] of Object.entries(env)) {
-    App.process[key] = val;
+    App.env[key] = val;
   }
   dataDesc(App, 'init', init);
   dataDesc(App, 'loginToSite', loginToSite);
-  App.ready = login(App.process.LOGIN_TYPE);
+  App.ready = login(App.env.LOGIN_TYPE);
   App.ready.catch(console.warn);
   return Main;
 };

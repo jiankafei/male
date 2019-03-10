@@ -53,7 +53,7 @@ const fetch = function({
             mask: true,
           });
           Methods.removeSession();
-          App.ready = login(App.process.LOGIN_TYPE);
+          App.ready = login(App.env.LOGIN_TYPE);
           App.ready
             .then(() => {
               wx.hideLoading();

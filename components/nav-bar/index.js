@@ -53,13 +53,13 @@ App.Comp({
       const pages = getCurrentPages();
       if (pages.length === 1) {
         this.setData({
-          iconStyle: this.data.mode || App.process.NAV_BAR_MODE,
+          iconStyle: this.data.mode || App.env.NAV_BAR_MODE,
           backNav: false,
-          homeNav: pages[pages.length - 1].route === App.process.INDEX_ROUTE ? false : true,
+          homeNav: pages[pages.length - 1].route === App.env.INDEX_ROUTE ? false : true,
         });
       } else {
         this.setData({
-          iconStyle: this.data.mode || App.process.NAV_BAR_MODE,
+          iconStyle: this.data.mode || App.env.NAV_BAR_MODE,
           backNav: true && this.data.back,
           homeNav: false || this.data.home,
         });
@@ -72,7 +72,7 @@ App.Comp({
     },
     navHome() {
       wx.reLaunch({
-        url: `/${App.process.INDEX_ROUTE}`,
+        url: `/${App.env.INDEX_ROUTE}`,
       });
     },
   },
