@@ -55,7 +55,7 @@ const upload = ({
 };
 
 // 双工通讯
-const socket = ({
+const websocket = ({
   url,
   header,
   protocols,
@@ -83,5 +83,5 @@ const socket = ({
 export default {
   DL: download,
   UL: upload,
-  WS: socket,
+  WS: websocket,
 };
