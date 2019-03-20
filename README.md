@@ -21,8 +21,8 @@
   import Frame from './frame/index';
   const Main = Frame({
     env,
-    init: () => {},
-    loginToSite: () => {},
+    init: res => {},
+    loginToSite: data => {},
   });
   Main({});
   ```
@@ -60,7 +60,7 @@
     name, // 函数名
     event, // 事件对象
     result, // 函数执行的返回值
-    scope, // page 或者 component 实例
+    context, // page 或者 component 实例
   }
   ```
 
@@ -80,11 +80,17 @@
 ### 添加的生命周期函数：
 
   1. onCreated:
-    替代 onLoad，小程序登陆流程和初始信息加载流程完毕后触发，在内部使用 App.ready
+    替代 onLoad，小程序登陆流程和初始信息加载流程完毕后触发，在内部调用 App.ready
+    ```js
+    onCreated(query, res) {}
+    ```
   2. onAppear:
     替代 onShow，如果想有和onCreated一样的触发时机，则可以使用 App.ready 实例
   3. onForward:
-    页面进入并显示时触发，小程序登陆流程和初始信息加载流程完毕后触发，在内部使用 App.ready
+    页面进入并显示时触发，小程序登陆流程和初始信息加载流程完毕后触发，在内部调用 App.ready
+    ```js
+    onForward(res) {}
+    ```
   4. onBackward:
     返回到当前页面并显示时触发
   5. onReappear:

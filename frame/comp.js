@@ -19,7 +19,7 @@ export default ({
         name: key,
         event,
         result,
-        scope: this,
+        context: this,
       });
       return result;
     };

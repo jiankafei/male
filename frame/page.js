@@ -29,7 +29,7 @@ export default ({
           name: key,
           event,
           result,
-          scope: this,
+          context: this,
         });
         return result;
       };
@@ -40,9 +40,9 @@ export default ({
   Page({
     onLoad(query) {
       App.ready
-        .then(() => {
+        .then(res => {
           console.log('Created');
-          typeof onCreated === 'function' && onCreated.call(this, query);
+          typeof onCreated === 'function' && onCreated.call(this, query, res);
         })
         .catch(console.warn);
     },
@@ -56,7 +56,7 @@ export default ({
         App.ready
           .then(res => {
             console.log('ForwardShow');
-            typeof onForward === 'function' && onForward.call(this);
+            typeof onForward === 'function' && onForward.call(this, res);
           })
           .catch(console.warn);
       } else if (currentStackLength < stackLength) {

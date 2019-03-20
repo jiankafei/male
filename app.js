@@ -3,9 +3,9 @@ import env from './env';
 
 const Main = Frame({
   env,
-  init() {
+  init(res) {
     console.log('%cInit', 'color: #0C84FF;');
-    return Promise.resolve();
+    return Promise.resolve(res);
   },
 });
 
