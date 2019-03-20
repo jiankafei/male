@@ -29,6 +29,7 @@ const fetch = function({
   validateStatus,
 }) {
   let task = null;
+  let aborted = false; // 是否中断请求
   const p = new Promise((resolve, reject) => {
     task = wx.request({
       url: baseURL.replace(/\/$/, '') + url,
@@ -43,6 +44,8 @@ const fetch = function({
       },
       fail: err => {
         if (err.statusCode === 403 || err.statusCode === 401) {
+          if (aborted) return reject(err);
+          aborted = true;
           for (const task of this.tasks) {
             if (task.header.Authorization) {
               task.abort() // 中断请求
@@ -56,6 +59,7 @@ const fetch = function({
           App.ready = login(App.env.LOGIN_TYPE);
           App.ready
             .then(() => {
+              aborted = false;
               wx.hideLoading();
               wx.redirectTo({
                 url: `/${getApp().getPage().route}`,
