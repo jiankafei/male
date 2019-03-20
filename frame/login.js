@@ -24,7 +24,7 @@ const silentLogin = async function() {
 };
 
 // 兼容登录
-const bothLogin = async function() {
+const smartLogin = async function() {
   try {
     await authLogin();
   } catch (error) {
@@ -37,20 +37,20 @@ const bothLogin = async function() {
 };
 
 // 登录流程
-const login = async function(name = 'both_login') {
+const login = async function(name = 'smart') {
   try {
     await Methods.checkSession();
     await App.init();
   } catch (error) {
     if (error.type === 'checkSession') {
       switch (name) {
-        case 'both_login':
-          await bothLogin();
+        case 'smart':
+          await smartLogin();
           break;
-        case 'auth_login':
+        case 'auth':
           await authLogin();
           break;
-        case 'silent_login':
+        case 'silent':
           await silentLogin();
           break;
       }
@@ -61,6 +61,6 @@ const login = async function(name = 'both_login') {
 export {
   authLogin,
   silentLogin,
-  bothLogin,
+  smartLogin,
   login,
 };

@@ -165,7 +165,7 @@
   APP_STORE_KEY: '', // 存储app信息的 localStorege key
   BASE_TOKEN: '', // 基础 token
   LOGIN_URL: '',  // 登录到站点的url
-  LOGIN_TYPE: '', // 登录类型 both_login | auth_login | silent_login 默认 both_login
+  LOGIN_TYPE: '', // 登录类型 smart | auth | silent 默认 smart
   INDEX_ROUTE: '', // 主页路径，没有前置/，默认 pages/index/index
   CHECK_SESSION_TYPE: '', // 检测session的方式 api | store 默认 api
   NAV_BAR_MODE: '', // 自定义组件nav-bar模式 dark | light  默认 dark
@@ -202,8 +202,8 @@
 
   1. authLogin: 授权登录，只有授权后才会调用登录流程，并获取用户微信信息
   2. silentLogin: 静默登录，不需要用户授权，执行静默登录
-  3. bothLogin: 兼容登录，授权情况下，调用authLogin，没有授权，调用silentLogin
-  4. login: 该方法在内部调用，做了是否登录的判断。通过 config 来配置登录方式 (both_login | auth_login | silent_login)，并默认调用 both_login
+  3. smartLogin: 兼容登录，授权情况下，调用 authLogin，没有授权，调用 silentLogin
+  4. login: 该方法在内部调用，做了是否登录的判断。通过 config 来配置登录方式 (smart | auth | silent)，并默认调用 smart
 
 ### 注意：
 
@@ -215,7 +215,7 @@
     // or
     App.ready = app.silentLogin();
     // or
-    App.ready = app.bothLogin();
+    App.ready = app.smartLogin();
     App.ready
       .then()
       .catch();
