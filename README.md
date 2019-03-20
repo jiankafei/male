@@ -56,7 +56,7 @@
 
   ```js
   options = {
-    route, // page 里为 this.route comp 里为 this.is
+    is, // page 或者 component 的 is 属性
     name, // 函数名
     event, // 事件对象
     result, // 函数执行的返回值
