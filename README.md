@@ -60,7 +60,7 @@
     name, // 函数名
     event, // 事件对象
     result, // 函数执行的返回值
-    context, // page 或者 component 实例
+    instance, // page 或者 component 实例
   }
   ```
 

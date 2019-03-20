@@ -29,7 +29,7 @@ export default ({
           name: key,
           event,
           result,
-          context: this,
+          instance: this,
         });
         return result;
       };
