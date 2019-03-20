@@ -11,7 +11,7 @@ import Methods from './methods';
 import {
   authLogin,
   silentLogin,
-  bothLogin,
+  smartLogin,
   login,
 } from './login';
 import InnerStore from './store';
@@ -34,7 +34,7 @@ const Main = ({
     ...Methods,
     authLogin,
     silentLogin,
-    bothLogin,
+    smartLogin,
     ...options,
     store: Object.assign(InnerStore, store),
   });
