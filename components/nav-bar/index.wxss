@@ -1,7 +1,6 @@
-/* @import "/assets/iconfont.wxss"; */
 Page {
   /* 菜单高度 */
-  --MH: 30px;
+  --MH: 32px;
 }
 
 .navbar-fill {
@@ -54,6 +53,5 @@ Page {
 .navbar-home {
   width: 47px;
   border-radius: 16px;
-  /* background-color: rgba(256, 256, 256, .1); */
   background-color: rgba(0, 0, 0, 0.15);
 }
