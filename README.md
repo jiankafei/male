@@ -94,7 +94,7 @@
 
 ## App.Comp - Method
 
-  替代 Component 函数，组件需使用 lifetimes 字段来管理生命周期，写在外部的生命周期函数将不起作用
+  对 Component 函数的封装，组件需使用 lifetimes 字段来管理生命周期，写在外部的生命周期函数将不起作用，根据微信小程序设计，Component 函数也可以用于实例化页面，用于替代 Page 函数
 
   ```js
   App.Comp({});
@@ -226,19 +226,26 @@
   各种工具函数，已挂载到 app 实例上
 
   ```js
-  // 对 wx.xxxSync 同步api的封装
-  getStorage,
-  setStorage,
-  removeStorage,
-  clearStorage,
-
-  getKey, // 获取app存储的某一个数据
-  setKey, // 设置app存储的某一个数据
-  removeKey, // 删除app存储的某一个数据
-
-  getSession, // 获取 token
-  setSession, // 设置token
-  removeSession, // 删除token
+  // 操作 querystring
+  qs
+    parse
+    stringify
+  // 操作 localStorage
+  local
+    get
+    set
+    remove
+    clear
+  // 操作 localStorage 存储里的某一个 key
+  localKey
+    get
+    set
+    remove
+  // 操作 localStorage 存储里的 access_token
+  session
+    get
+    set
+    remove
 
   storeCheckSession, // 基于是否存储 token 判断是否过期
   apiCheckSession, // 基于 wx.checkSession 接口判断 token 是否过期
