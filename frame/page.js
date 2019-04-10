@@ -25,7 +25,7 @@ export default ({
       innerOptions[key] = function(event = nul()) {
         const result = val.call(this, event);
         typeof app.methodCaptured === 'function' && app.methodCaptured({
-          route: this.is,
+          is: this.is,
           name: key,
           event,
           result,
