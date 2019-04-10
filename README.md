@@ -241,7 +241,7 @@
   removeSession, // 删除token
 
   storeCheckSession, // 基于是否存储 token 判断是否过期
-  wxCheckSession, // 基于 wx.checkSession 接口判断token是否过期
+  apiCheckSession, // 基于 wx.checkSession 接口判断 token 是否过期
   checkSession, // 上两个方法的封装
 
   updateApp, // 更新app

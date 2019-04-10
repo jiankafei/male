@@ -226,7 +226,7 @@ export default {
   localKey,
   session,
   storeCheckSession,
-  wxCheckSession,
+  apiCheckSession,
   checkSession,
   updateApp,
   getUserInfo,
