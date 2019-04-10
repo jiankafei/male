@@ -41,7 +41,7 @@ export default ({
     onLoad(query) {
       App.ready
         .then(res => {
-          console.log('Created');
+          // console.log('Created');
           typeof onCreated === 'function' && onCreated.call(this, query, res);
         })
         .catch(console.warn);
@@ -55,17 +55,17 @@ export default ({
         // 进入
         App.ready
           .then(res => {
-            console.log('ForwardShow');
+            // console.log('ForwardShow');
             typeof onForward === 'function' && onForward.call(this, res);
           })
           .catch(console.warn);
       } else if (currentStackLength < stackLength) {
         // 返回
-        console.log('BackwardShow');
+        // console.log('BackwardShow');
         typeof onBackward === 'function' && onBackward.call(this);
       } else if (currentStackLength === stackLength) {
         // 前后台切换
-        console.log('ReappearShow');
+        // console.log('ReappearShow');
         typeof onReappear === 'function' && onReappear.call(this);
       }
       stackLength = currentStackLength;

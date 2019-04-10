@@ -4,7 +4,7 @@ import env from './env';
 const Main = Frame({
   env,
   init(res) {
-    console.log('%cInit', 'color: #0C84FF;');
+    // console.log('%cInit', 'color: #0C84FF;');
     return Promise.resolve(res);
   },
 });
