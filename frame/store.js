@@ -31,6 +31,7 @@ const systemInfo = (() => {
     console.warn(error);
   }
 })();
+
 const navBarInfo = getNavBarInfo(systemInfo);
 
 export default {

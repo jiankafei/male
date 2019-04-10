@@ -55,7 +55,7 @@ const fetch = function({
             title: '正在重新登录',
             mask: true,
           });
-          Methods.removeSession();
+          Methods.session.remove();
           App.ready = login(App.env.LOGIN_TYPE);
           App.ready
             .then(() => {

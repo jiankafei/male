@@ -162,7 +162,7 @@
 ## env
 
   ```js
-  APP_STORE_KEY: '', // 存储app信息的 localStorege key
+  STORE_KEY: '', // 存储app信息的 localStorege key
   BASE_TOKEN: '', // 基础 token
   LOGIN_URL: '',  // 登录到站点的url
   LOGIN_TYPE: '', // 登录类型 smart | auth | silent 默认 smart
