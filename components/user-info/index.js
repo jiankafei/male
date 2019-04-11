@@ -31,6 +31,8 @@ App.Comp({
   },
   methods: {
     getUserInfo(ev) {
+      if (this.getingUserInfo) return;
+      this.getingUserInfo = true;
       const detail = ev.detail;
       this.triggerEvent('userinfo', detail);
       if (detail.errMsg === 'getUserInfo:ok') {
@@ -44,8 +46,12 @@ App.Comp({
               showUserInfoBtn: false,
             });
           })
-          .catch(console.warn);
+          .catch(console.warn)
+          .finally(() => {
+            this.getingUserInfo = false;
+          });
       } else {
+        this.getingUserInfo = false;
         this.triggerEvent('fail', detail);
       }
     },
