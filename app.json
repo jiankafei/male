@@ -15,5 +15,6 @@
     "nav-bar": "/components/nav-bar/index",
     "user-info": "/components/user-info/index"
   },
-  "permission": {}
+  "permission": {},
+  "sitemapLocation": "sitemap.json"
 }
