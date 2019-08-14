@@ -77,7 +77,7 @@
   1. onLoad
   2. onShow
 
-### 添加的生命周期函数：
+### 添加的生命周期函数
 
   1. onCreated:
     在内部调用 App.ready，替代 onLoad，App.ready流程完毕后触发，onCreated(query, res) {}
@@ -183,19 +183,6 @@
   userInfo, // 默认为空对象
   ```
 
-## runtime
-
-  添加了以下内容的支持
-
-    async function
-    Promise.prototype.finally
-
-  在需要使用 async 函数的文件里顶部添加如下代码：
-
-  ```js
-    const regeneratorRuntime = App.regeneratorRuntime;
-  ```
-
 ## Login
 
   在 config 文件里配置登录类型，除 login 方法外的其他三个方法已挂载到 app 实例上
@@ -205,7 +192,7 @@
   3. smartLogin: 兼容登录，授权情况下，调用 authLogin，没有授权，调用 silentLogin
   4. login: 该方法在内部调用，做了是否登录的判断。通过 config 来配置登录方式 (smart | auth | silent)，并默认调用 smart
 
-### 注意：
+### 登录注意
 
   1. 自定义登陆态下，当前页面请求时，session_key 过期，则会重新登录并重新加载页面
   2. 在做授权登录时，如果需要自行调用上述三个登录函数，则需要按照下面的方式操作：
@@ -268,22 +255,28 @@
 
   nav-bar: 自定义导航组件
 
-    @props title // 非必填，标题
-    @props color // 非必填，标题颜色
-    @props background // 非必填，导航栏背景
-    @props fill // 非必填，是否占据空间
-    @props back // 非必填，是否显示 back 按钮
-    @props home // 非必填，是否显示 home 按钮
-    @props mode // 非必填，按钮样式，dark | light
+  注：请自行设置不使用原生导航
+
+  @props title // 非必填，标题
+  @props color // 非必填，标题颜色
+  @props background // 非必填，导航栏背景
+  @props fill // 非必填，是否占据空间
+  @props back // 非必填，是否显示 back 按钮
+  @props home // 非必填，是否显示 home 按钮
+  @props mode // 非必填，按钮样式，dark | light
 
   user-info: 授权 getUserInfo 组件
 
-    @props visibility // 非必填，外部控制是否显示
-    @event userinfo // 点击授权按钮事件
-    @event success // 授权成功事件
-    @event fail // 授权失败事件
+  @props visibility // 非必填，外部控制是否显示
+  @event userinfo // 点击授权按钮事件
+  @event success // 授权成功事件
+  @event fail // 授权失败事件
 
 ## 注意
 
-  1. 登录流程和初始信息加载流程在 App 启动时，只会执行一次，因此除了初始显式的页面，其他页面的 onCreated 等有类似启动时机的周期函数将会很快被执行，因此无需担心新的周期函数会增加页面打开时间；
-  2. 对于全局数据，建议只在app启动时调用一次获取接口，并把数据放到全局数据中，然后其他接口更新相关数据后，也一并更新全局数据即可，好处是不需要每个页面都要获取数据，加快页面显示；
+1. 登录流程和初始信息加载流程在 App 启动时，只会执行一次，因此除了初始显式的页面，其他页面的 onCreated 等有类似启动时机的周期函数将会很快被执行，因此无需担心新的周期函数会增加页面打开时间；
+2. 对于全局数据，建议只在app启动时调用一次获取接口，并把数据放到全局数据中，然后其他接口更新相关数据后，也一并更新全局数据即可，好处是不需要每个页面都要获取数据，加快页面显示；
+
+## ChangeLog
+
+最新的微信小程序支持增强编译，因此去掉了 runtime 对 async function, Promise.prototype.finally 的原有支持。

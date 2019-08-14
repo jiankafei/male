@@ -1,6 +1,4 @@
 import Methods from './methods';
-const regeneratorRuntime = App.regeneratorRuntime;
-
 // 授权登录
 const authLogin = async function() {
   await Methods.checkAuth('userInfo');

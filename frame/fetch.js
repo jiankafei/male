@@ -4,8 +4,6 @@ import {
 } from './util';
 import Methods from './methods';
 
-const regeneratorRuntime = App.regeneratorRuntime;
-
 // 默认配置
 const InnerOptions = {
   baseURL: '',
