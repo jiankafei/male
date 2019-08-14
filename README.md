@@ -257,20 +257,20 @@
 
   注：请自行设置不使用原生导航
 
-  @props title // 非必填，标题
-  @props color // 非必填，标题颜色
-  @props background // 非必填，导航栏背景
-  @props fill // 非必填，是否占据空间
-  @props back // 非必填，是否显示 back 按钮
-  @props home // 非必填，是否显示 home 按钮
-  @props mode // 非必填，按钮样式，dark | light
+    @props title // 非必填，标题
+    @props color // 非必填，标题颜色
+    @props background // 非必填，导航栏背景
+    @props fill // 非必填，是否占据空间
+    @props back // 非必填，是否显示 back 按钮
+    @props home // 非必填，是否显示 home 按钮
+    @props mode // 非必填，按钮样式，dark | light
 
   user-info: 授权 getUserInfo 组件
 
-  @props visibility // 非必填，外部控制是否显示
-  @event userinfo // 点击授权按钮事件
-  @event success // 授权成功事件
-  @event fail // 授权失败事件
+    @props visibility // 非必填，外部控制是否显示
+    @event userinfo // 点击授权按钮事件
+    @event success // 授权成功事件
+    @event fail // 授权失败事件
 
 ## 注意
 
