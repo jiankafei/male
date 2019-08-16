@@ -13,6 +13,10 @@ export default ({
   onReady,
   onHide,
   onUnload,
+  onResize,
+  onPullDownRefresh,
+  onReachBottom,
+  onPageScroll,
   ...options,
 }) => {
   const app = getApp();
@@ -73,6 +77,10 @@ export default ({
     onReady,
     onHide,
     onUnload,
+    onResize,
+    onPullDownRefresh,
+    onReachBottom,
+    onPageScroll,
     ...innerOptions,
   });
 };
