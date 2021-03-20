@@ -1,5 +1,5 @@
 import {
-  nul,
+  nil,
 } from './util';
 
 let stackLength = 0;
@@ -17,16 +17,16 @@ export default ({
   onPullDownRefresh,
   onReachBottom,
   onPageScroll,
-  ...options,
+  ...options
 }) => {
   const app = getApp();
-  const innerOptions = nul();
+  const innerOptions = nil();
   for (const name of ['onLoad', 'onShow']) {
     delete options[name];
   }
   for (const [key, val] of Object.entries(options)) {
     if (typeof val === 'function') {
-      innerOptions[key] = function(event = nul()) {
+      innerOptions[key] = function(event = nil()) {
         const result = val.call(this, event);
         typeof app.methodCaptured === 'function' && app.methodCaptured({
           is: this.is,

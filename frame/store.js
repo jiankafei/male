@@ -1,5 +1,5 @@
 import {
-  nul,
+  nil,
 } from './util';
 
 // 计算导航栏布局
@@ -29,6 +29,7 @@ const systemInfo = (() => {
     return wx.getSystemInfoSync();
   } catch (error) {
     console.warn(error);
+    return '';
   }
 })();
 
@@ -37,5 +38,5 @@ const navBarInfo = getNavBarInfo(systemInfo);
 export default {
   systemInfo,
   navBarInfo,
-  userInfo: nul(),
+  userInfo: nil(),
 };

@@ -1,9 +1,9 @@
 // 空对象
-const nul = () => Object.create(null);
+const nil = () => Object.create(null);
 
 // 合并请求参数
 const mergeOptions = (...args) => {
-  const options = nul();
+  const options = nil();
   for (const item of args) {
     const { header, ...other } = item;
     Object.assign(options, other);
@@ -35,7 +35,7 @@ const accessDesc = (target, prop, get, set) => {
 };
 
 export {
-  nul,
+  nil,
   mergeOptions,
   dataDesc,
   accessDesc,

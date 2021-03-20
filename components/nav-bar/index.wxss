@@ -44,7 +44,7 @@ Page {
   margin-left: 5px;
 }
 
-.navbar-item .navbar-icon {
+.navbar-icon {
   width: 17px;
   height: 17px;
   margin: auto;

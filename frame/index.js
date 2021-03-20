@@ -28,7 +28,7 @@ dataDesc(App, 'WS', WS);
 
 const Main = ({
   store,
-  ...options,
+  ...options
 }) => {
   App({
     ...Methods,

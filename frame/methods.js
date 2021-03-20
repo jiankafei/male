@@ -1,6 +1,6 @@
 import store from './store';
 import {
-  nul,
+  nil,
 } from './util';
 
 // querystring
@@ -61,12 +61,12 @@ const localKey = {
     local.get(App.env.STORE_KEY)[key] || '';
   },
   set: (key, val) => {
-    const oldStore = local.get(App.env.STORE_KEY) || nul();
+    const oldStore = local.get(App.env.STORE_KEY) || nil();
     oldStore[key] = val;
     local.set(App.env.STORE_KEY, oldStore);
   },
   remove: (key) => {
-    const oldStore = local.get(App.env.STORE_KEY) || nul();
+    const oldStore = local.get(App.env.STORE_KEY) || nil();
     delete oldStore[key];
     local.set(App.env.STORE_KEY, oldStore);
   },
@@ -127,15 +127,18 @@ const updateApp = () => {
   }
 };
 // 获取 UserInfo
-const getUserInfo = () => new Promise((resolve, reject) => {
-  wx.getUserInfo({
+const getUserProfile = (lang = 'zh_CN', desc = '该应用需要您的用户昵称和头像信息') => new Promise((resolve, reject) => {
+  wx.getUserProfile({
+    lang,
+    desc,
     success: res => {
+      console.log(res);
       store.userInfo = res.userInfo;
       resolve(res);
     },
     fail: () => {
       reject({
-        type: 'getUserInfo',
+        type: 'getUserProfile',
       });
     },
   });
@@ -166,7 +169,7 @@ const getSystemInfo = () => {
     return wx.getSystemInfoSync();
   } catch (err) {
     console.warn(err);
-    return nul();
+    return nil();
   }
 };
 // 获取当前页面
@@ -229,7 +232,7 @@ export default {
   apiCheckSession,
   checkSession,
   updateApp,
-  getUserInfo,
+  getUserProfile,
   checkAuth,
   getSystemInfo,
   getPage,

@@ -169,6 +169,7 @@
   INDEX_ROUTE: '', // 主页路径，没有前置/，默认 pages/index/index
   CHECK_SESSION_TYPE: '', // 检测session的方式 api | store 默认 api
   NAV_BAR_MODE: '', // 自定义组件nav-bar模式 dark | light  默认 dark
+  HAS_USERINFO: , // 是否已经获取过用户信息，用于判断是否需要获取用户信息
   ```
 
 ## store
@@ -243,7 +244,7 @@
   getPage, // 获取当前page
   rpx2px, // rpx 转换到 px
 
-  getUserInfo, // promisify 'wx.getUserInfo' api
+  getUserProfile, // promisify 'wx.getUserProfile' api
   checkAuth, // promisify 权限鉴定
   loginToWx, // promisify 登陆到 微信服务器
   loginToSite, // promisify 登陆到自家服务器
@@ -265,7 +266,7 @@
     @props home // 非必填，是否显示 home 按钮
     @props mode // 非必填，按钮样式，dark | light
 
-  user-info: 授权 getUserInfo 组件
+  user-info: 授权 getUserProfile 组件
 
     @props visibility // 非必填，外部控制是否显示
     @event userinfo // 点击授权按钮事件

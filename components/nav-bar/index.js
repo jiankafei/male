@@ -25,7 +25,7 @@ App.Comp({
     // 是否占位
     fill: {
       type: Boolean,
-      value: false,
+      value: true,
     },
     // 是否需要back按钮
     back: {

@@ -21,38 +21,34 @@ App.Comp({
   },
   lifetimes: {
     attached() {
-      app.checkAuth('userInfo')
-        .catch(() => {
-          this.setData({
-            showUserInfoBtn: true,
-          });
+      if (!App.env.HAS_USERINFO) {
+        this.setData({
+          showUserInfoBtn: true,
         });
+      }
     },
   },
   methods: {
-    getUserInfo(ev) {
-      if (this.getingUserInfo) return;
-      this.getingUserInfo = true;
-      const detail = ev.detail;
-      this.triggerEvent('userinfo', detail);
-      if (detail.errMsg === 'getUserInfo:ok') {
-        this.triggerEvent('success', detail);
-        app.store.userInfo = detail.userInfo;
-        app.store.uid = detail.userInfo.id;
+    async getUserProfile(ev) {
+      try {
+        if (this.gettingUserInfo) return;
+        this.gettingUserInfo = true;
+        this.triggerEvent('userinfo');
+        const userInfo = await app.getUserProfile();
+        this.triggerEvent('success', userInfo);
+        app.store.userInfo = userInfo;
         App.ready = app.authLogin();
-        App.ready
-          .then(() => {
-            this.setData({
-              showUserInfoBtn: false,
-            });
-          })
-          .catch(console.warn)
-          .finally(() => {
-            this.getingUserInfo = false;
-          });
-      } else {
-        this.getingUserInfo = false;
-        this.triggerEvent('fail', detail);
+        await App.ready;
+        this.setData({
+          showUserInfoBtn: false,
+        });
+      } catch (error) {
+        console.warn(error);
+        if (error.type === 'getUserProfile') {
+          this.triggerEvent('fail', error);
+        }
+      } finally {
+        this.gettingUserInfo = false;
       }
     },
   },

@@ -1,3 +1,3 @@
-<nav-bar fill="{{true}}"/>
+<nav-bar />
 <view>我的页面</view>
 <user-info>授权</user-info>

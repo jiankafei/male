@@ -1,13 +1,12 @@
 import Methods from './methods';
 // 授权登录
 const authLogin = async function() {
-  await Methods.checkAuth('userInfo');
+  if (!App.env.HAS_USERINFO) return;
   const code = await Methods.loginToWx();
-  const { encryptedData: encrypted_data, iv, userInfo } = await Methods.getUserInfo();
+  const { userInfo } = await Methods.getUserProfile();
   const res = await App.loginToSite({
     code,
-    encrypted_data,
-    iv,
+    userInfo,
   });
   await App.init(res);
 };

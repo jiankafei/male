@@ -1,5 +1,5 @@
 import {
-  nul,
+  nil,
   mergeOptions,
 } from './util';
 import Methods from './methods';
@@ -7,8 +7,8 @@ import Methods from './methods';
 // 默认配置
 const InnerOptions = {
   baseURL: '',
-  data: nul(),
-  header: nul(),
+  data: nil(),
+  header: nil(),
   method: 'GET',
   dataType: 'json',
   responseType: 'text',
@@ -93,15 +93,15 @@ class Wall {
 };
 
 // 主程序
-const FC = nul();
-FC.defaults = nul();
+const FC = nil();
+FC.defaults = nil();
 FC.reqWall = new Wall();
 FC.resWall = new Wall();
 
 // 核心类
 const wm_ins_options = new WeakMap();
 class Core {
-  constructor(options = nul()) {
+  constructor(options = nil()) {
     wm_ins_options.set(this, options);
     this.reqWall = new Wall();
     this.resWall = new Wall();
