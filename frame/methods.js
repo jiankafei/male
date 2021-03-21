@@ -139,7 +139,7 @@ const getUserProfile = (lang = 'zh_CN', desc = '该应用需要您的用户信�
       } else {
         reject({
           type: 'getUserProfile',
-          desc = res.errMsg,
+          desc: res.errMsg,
         });
       }
     },
@@ -147,7 +147,7 @@ const getUserProfile = (lang = 'zh_CN', desc = '该应用需要您的用户信�
       console.log(error);
       reject({
         type: 'getUserProfile',
-        desc = error.errMsg,
+        desc: error.errMsg,
       });
     },
   });
