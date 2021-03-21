@@ -95,9 +95,10 @@ const storeCheckSession = () => new Promise((resolve, reject) => {
 const apiCheckSession = () => new Promise((resolve, reject) => {
   wx.checkSession({
     success: resolve,
-    fail: () => {
+    fail: (error) => {
       reject({
         type: 'checkSession',
+        desc: error.errMsg,
       });
     },
   });
@@ -127,18 +128,26 @@ const updateApp = () => {
   }
 };
 // 获取 UserInfo
-const getUserProfile = (lang = 'zh_CN', desc = '该应用需要您的用户昵称和头像信息') => new Promise((resolve, reject) => {
+const getUserProfile = (lang = 'zh_CN', desc = '该应用需要您的用户信息') => new Promise((resolve, reject) => {
   wx.getUserProfile({
     lang,
     desc,
     success: res => {
-      console.log(res);
-      store.userInfo = res.userInfo;
-      resolve(res);
+      if (res.errMsg === 'getUserProfile:ok') {
+        store.userInfo = res.userInfo;
+        resolve(res.userInfo);
+      } else {
+        reject({
+          type: 'getUserProfile',
+          desc = res.errMsg,
+        });
+      }
     },
-    fail: () => {
+    fail: (error) => {
+      console.log(error);
       reject({
         type: 'getUserProfile',
+        desc = error.errMsg,
       });
     },
   });
@@ -156,9 +165,10 @@ const checkAuth = (name) => new Promise((resolve, reject) => {
         });
       }
     },
-    fail: () => {
+    fail: (error) => {
       reject({
         type: 'checkAuth',
+        desc: error.errMsg,
       });
     },
   });
@@ -190,9 +200,10 @@ const loginToWx = () => new Promise((resolve, reject) => {
         type: 'loginToWx',
       });
     },
-    fail: () => {
+    fail: (error) => {
       reject({
         type: 'loginToWx',
+        desc: error.errMsg,
       });
     },
   });
